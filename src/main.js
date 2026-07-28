@@ -1,52 +1,65 @@
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
+import axios from "axios";
+import './css/styles.css';  // Переконайся, що цей файл дійсно існує за цим шляхом!
 
-import { getImagesByQuery } from './js/pixabay-api.js';
-import { createGallery, clearGallery, showLoader, hideLoader } from './js/render-functions.js';
+const BASE_URL = 'https://pokeapi.co';
 
-const searchForm = document.querySelector('.form');
 
-searchForm.addEventListener('submit', handleSearch);
+const form = document.querySelector(".search-form");
+const container = document.querySelector(".card-container");
+const loader = document.querySelector(".loader");
 
-function handleSearch(event) {
-  event.preventDefault();
+form.addEventListener("submit", onSearch);
 
-  const form = event.currentTarget;
-  const searchQuery = form.elements['search-text'].value.trim();
+async function fetchData(pokemonName) {
+    const response = await fetch(`${BASE_URL}${pokemonName.toLowerCase()}`);
+    if (!response.ok) throw new Error(`Status: ${response.status}`);
+    return await response.json();
+}
 
-  if (searchQuery === '') {
-    iziToast.warning({
-      title: 'Warning',
-      message: 'Please enter a search query!',
-      position: 'topRight',
-    });
-    return;
-  }
 
-  clearGallery();
-  showLoader();
+async function onSearch(event) {
+    event.preventDefault(); // Це блокує перезавантаження та query=picachu в адресному рядку
+    const searchQuery = event.target.elements.query.value.trim();
 
-  getImagesByQuery(searchQuery)
-    .then(data => {
-      if (data.hits.length === 0) {
-        iziToast.error({
-          message: 'Sorry, there are no images matching your search query. Please try again!',
-          position: 'topRight',
-        });
+    if(!searchQuery) {
+        alert('Please enter a pokemon name!');
         return;
-      }
+    }
+    
+    loader.classList.remove("hidden");
 
-      createGallery(data.hits);
-    })
-    .catch(() => {
-      iziToast.error({
-        title: 'Error',
-        message: 'Something went wrong. Please try again later.',
-        position: 'topRight',
-      });
-    })
-    .finally(() => {
-      hideLoader();
-      form.reset();
-    });
+    try {
+        const data = await fetchData(searchQuery);
+        container.innerHTML = renderPokemonCard(data);
+    } catch(error) {
+        alert(`Pokemon not found! (${error.message})`);
+    } finally {
+        loader.classList.add("hidden");
+        event.target.reset();
+    }
+}
+
+function renderPokemonCard({ name, height, weight, abilities, sprites }) {
+    const abilitiesList = abilities.map(({ ability }) => `
+        <li class="list-group-item text-capitalize">${ability.name}</li>
+    `).join("");
+
+    return `
+        <div class="card" style="width: 18rem; margin: 20px auto;">
+            <div class="card-img-top text-center" style="background: #f8f9fa; padding: 10px;">
+                <img src="${sprites.front_default}" alt="${name}" style="width: 120px; height: 120px;"/>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title text-capitalize" style="color: #2e2f42;">${name}</h3>
+                <p class="card-text">Height: ${height}</p>
+                <p class="card-text">Weight: ${weight}</p>
+                <div class="card-text mt-3">
+                    <h4>Abilities:</h4>
+                    <ul class="list-group list-group-flush">
+                        ${abilitiesList}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `;
 }

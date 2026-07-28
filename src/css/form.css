@@ -1,0 +1,68 @@
+/* Контейнер форми: вирівнює інпут і кнопку в один ряд по центру */
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 36px auto;
+    width: 100%;
+}
+
+.form label {
+    display: inline-flex;
+}
+
+/* Твої красиві стилі для поля введення */
+.form input {
+    width: 272px;
+    height: 40px;
+    padding: 8px 16px;
+    border: 1px solid #808080;
+    border-radius: 4px;
+    outline: none;
+    background-color: transparent;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Колір рамки інпута при фокусі */
+.form input:focus {
+    border-color: #4e75ff;
+}
+
+/* Твої красиві стилі для кнопки Search */
+.form button {
+    width: 95px;
+    height: 40px;
+    background-color: #4e75ff;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Зміна кольору кнопки при наведенні */
+.form button:hover {
+    background-color: #6c8cff;
+}
+
+/* НОВЕ: Центруємо заголовок POKEMON строго над формою */
+.wrapper h3 {
+             text-align: center;
+            margin-top: 40px;
+            /* ОПУСКАЄ ЗАГОЛОВОК ВНИЗ (додав цей рядок) */
+            margin-bottom: 24px;
+            /* Відступ від заголовка до форми */
+            font-family: "Montserrat", sans-serif;
+            color: #2e2f42;
+}
