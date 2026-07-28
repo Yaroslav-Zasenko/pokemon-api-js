@@ -3,7 +3,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import './css/styles.css'; // Шлях до твого головного файлу стилів
 
-const BASE_URL = 'https://pokeapi.co';
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 
 const form = document.querySelector(".form"); // Шукаємо за твоїм класом .form
 const container = document.querySelector(".card-container");
