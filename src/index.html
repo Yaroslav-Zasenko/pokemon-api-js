@@ -4,8 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <link rel="stylesheet" href="https://jsdelivr.net"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pokemon API GoIT</title>
 </head>
@@ -14,24 +12,23 @@
   <div id="app">
     <div class="wrapper">
 
-      <h3>POKEMON api</h3>
-      <!-- Твій клас form для стилів із form.css -->
-      <form class="form form-inline search-form">
-        <div class="form-group">
-          <input type="text" class="form-control" name="query" placeholder="Enter pokemon name..." />
-        </div>
+      <h3>POKEMON</h3>
 
-        <button type="submit" class="btn btn-primary">Search</button>
+      <!-- Чиста форма без бутстрапу, яка використовує твій клас .form -->
+      <form class="form">
+        <input type="text" name="query" placeholder="Enter pokemon name..." required />
+        <button type="submit">Search</button>
       </form>
 
-      <!-- Оновлений лоадер для кругової анімації з loader.css -->
+      <!-- Твій красивий лоадер-кружечок -->
       <span class="loader hidden"></span>
 
+      <!-- Контейнер для картки покемона -->
       <div class="card-container"></div>
 
     </div>
   </div>
-  <script type="module" src="/main.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>
