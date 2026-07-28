@@ -1,31 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/pokemon-api-js/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="https://jsdelivr.net"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vanilla App Template</title>
+  <title>Pokemon API GoIT</title>
   <script type="module" crossorigin src="/pokemon-api-js/index.js"></script>
-  <link rel="modulepreload" crossorigin href="/pokemon-api-js/assets/vendor-BGqwtSVv.js">
-  <link rel="stylesheet" crossorigin href="/pokemon-api-js/assets/vendor-DumFYO8Z.css">
-  <link rel="stylesheet" crossorigin href="/pokemon-api-js/assets/index-DpH8vXCh.css">
+  <link rel="stylesheet" crossorigin href="/pokemon-api-js/assets/index-OPKkSouo.css">
 </head>
 
 <body>
-  <form class="form">
-    <label>
-      <input type="text" name="search-text" placeholder="Search images..." required>
-    </label>
-    <button type="submit">Search</button>
-  </form>
+  <div id="app">
+    <div class="wrapper">
 
-  
-  <div class="loader loader-default"></div>
+      <h3>POKEMON api</h3>
+      <!-- Твій клас form для стилів із form.css -->
+      <form class="form form-inline search-form">
+        <div class="form-group">
+          <input type="text" class="form-control" name="query" placeholder="Enter pokemon name..." />
+        </div>
 
- 
-  <ul class="gallery"></ul>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
 
+      <!-- Оновлений лоадер для кругової анімації з loader.css -->
+      <span class="loader hidden"></span>
+
+      <div class="card-container"></div>
+
+    </div>
+  </div>
 </body>
 
 </html>
